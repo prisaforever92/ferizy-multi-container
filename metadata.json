@@ -1,0 +1,6 @@
+{
+  "name": "FerizyForge",
+  "description": "Workspace dan generator proyek Electron Fase 1–4 untuk Browser Khusus Multi-Container Ferizy (5 Akun x 3 Tab, Pre-Flight Check, Multi-Proxy, Geo 0ms, Asset Blocker, Watchdog 350MB, Sniffer 0ms, Notif Terpusat, Log Rotation & Uji Ketahanan 24 Jam) dengan ekspor .ZIP siap build .exe di Windows.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

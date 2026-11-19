@@ -1,0 +1,27 @@
+appId: com.ferizy.multicontainer.browser
+productName: Ferizy Multi-Container
+directories:
+  output: dist
+  buildResources: assets
+files:
+  - src/**/*
+  - config/**/*
+  - assets/**/*
+  - package.json
+win:
+  signAndEditExecutable: false
+  target:
+    - target: nsis
+      arch:
+        - x64
+    - target: portable
+      arch:
+        - x64
+nsis:
+  artifactName: "${productName}-Setup-V5.8-${arch}.${ext}"
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+portable:
+  artifactName: "${productName}-Portable-V5.8-${arch}.${ext}"

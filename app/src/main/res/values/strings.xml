@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FerizyForge</string>
+    <string name="nav_preflight">Pre-Flight</string>
+    <string name="nav_export_zip">Kode &amp; ZIP</string>
+    <string name="nav_autoklik">AutoKlik v3.2</string>
+    <string name="nav_roadmap">Roadmap</string>
+    <string name="cd_hero_banner">Ilustrasi lima kontainer browser terisolasi untuk ekosistem Ferizy Multi-Container</string>
+</resources>

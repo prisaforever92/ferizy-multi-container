@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ferizy Multi-Container Browser • V5.8</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header id="shell-header">
+    <div class="top-strip">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <strong>Ferizy Multi-Container</strong>
+        <span class="badge badge-phase">FASE 4 • V5.8</span>
+        <span id="total-tabs-badge" class="badge">0/15 Tab</span>
+        <div class="toolbar-group" title="Kotak Kontainer Akun & Kumpulan Tab">
+          <button id="btn-add-account" class="btn-small btn-primary">+ Akun</button>
+          <button id="btn-toggle-preflight-grid" class="btn-small btn-primary" title="Sembunyikan / Tampilkan Kotak Kontainer Tab & Akun">📦 Kotak Kontainer</button>
+          <button id="btn-open-display-modal" class="btn-small">Tampilan</button>
+        </div>
+        <div class="toolbar-group" title="Zoom Semua Halaman (Ctrl + / - / 0)">
+          <button id="btn-zoom-out" class="btn-small">-</button>
+          <button id="btn-zoom-reset" class="btn-small">100%</button>
+          <button id="btn-zoom-in" class="btn-small">+</button>
+        </div>
+        <button id="btn-toggle-captcha-notif" class="btn-small" title="ON/OFF Notif CAPTCHA/Challenge Muncul">Notif CAPTCHA: OFF</button>
+        <button id="btn-open-autoklik-ext" class="btn-small btn-primary" title="Atur Titik AutoKlik, Jeda, Loop & Load/Save JSON Per-Tab">⚙ Atur Titik</button>
+        <span id="sys-meter-pill" class="pill pill-ok" title="Pantau CPU & RAM PC + Total Browser tiap 3 detik dari Main Process (selalu tampil di bar utama)">CPU PC: --% • RAM PC: --/--GB | Browser: --MB (--%)</span>
+        <button id="btn-quick-clean" class="btn-small" title="Bersihkan cache HTTP non-login & reload tab Standby tersembunyi tanpa mengganggu tab yang sedang berjalan">⚡ Bersih Cepat</button>
+      </div>
+      <div class="system-pills">
+        <span class="pill pill-ok">Sniffer 0ms + Event Bus &lt;1ms</span>
+        <span id="clock-sync-pill" class="pill pill-info">Clock Sync: 0ms (RTT 0ms)</span>
+        <span id="shot-timer-pill" class="pill pill-info">Timer Tembak: OFF</span>
+        <span id="blocker-pill" class="pill pill-info">Asset Blocker: Selektif</span>
+        <span id="watchdog-pill" class="pill pill-info">Watchdog: 350MB • Queue 400ms</span>
+        <span id="endurance-pill" class="pill pill-ok">RAM: 0MB • Log: 0MB (50MB/7h)</span>
+        <span id="ntfy-badge" class="pill pill-accent">ntfy: ferizy_Transsamudra05</span>
+        <button id="btn-mute-alarm" class="btn-small">Suara: ON</button>
+        <button id="btn-resume-captcha" class="btn-small">Lanjut CAPTCHA (0)</button>
+        <button id="btn-run-endurance" class="btn-small">Uji 24J</button>
+        <button id="btn-export-health" class="btn-small">Health JSON</button>
+        <button id="btn-open-notif-modal" class="btn-small btn-primary">Notif HP (3/6)</button>
+        <button id="btn-test-ntfy" class="btn-small">Tes ntfy</button>
+        <button id="btn-toggle-checklist" class="btn-small btn-primary">Panel Opsi Fase 3–4</button>
+        <button id="btn-reload-standby" class="btn-small">Reload Standby (400ms)</button>
+        <button id="btn-check-all-ip" class="btn-small">Cek Semua IP</button>
+        <button id="btn-refresh-preflight" class="btn-small btn-primary">Refresh Pre-Flight</button>
+      </div>
+    </div>
+
+    <div id="optional-checklist-panel" class="checklist-panel hidden">
+      <div class="chk-row">
+        <label class="chk-item"><input type="checkbox" id="chk-keep-alive" checked /> Keep-Alive</label>
+        <select id="sel-keepalive-min" class="chk-select">
+          <option value="10">10m</option>
+          <option value="12" selected>12m</option>
+          <option value="15">15m</option>
+        </select>
+        <select id="sel-autowake-mode" class="chk-select">
+          <option value="monitor_only">Wake: Monitor Saja</option>
+          <option value="same_account" selected>Wake: Akun Sama &lt;1ms</option>
+          <option value="all_accounts">Wake: Semua 5 Akun &lt;1ms</option>
+        </select>
+        <label class="chk-item"><input type="checkbox" id="chk-captcha-autopop" checked /> CAPTCHA Auto-Pop</label>
+        <label class="chk-item"><input type="checkbox" id="chk-smart-matcher" checked /> Smart Matcher</label>
+        <select id="sel-service-type" class="chk-select">
+          <option value="all" selected>Layanan: Semua</option>
+          <option value="express">Layanan: Express</option>
+          <option value="reguler">Layanan: Reguler</option>
+        </select>
+        <label class="chk-item"><input type="checkbox" id="chk-matcher-fallback" checked /> Fallback Terdekat</label>
+        <input id="input-priority-hours" class="chk-hours" type="text" value="08:00,10:00,12:00,14:00,20:00" title="Jam Prioritas" />
+        <label class="chk-item"><input type="checkbox" id="chk-latency-comp" /> Latency RTT/2</label>
+        <select id="sel-fast-timeout" class="chk-select">
+          <option value="3500">TO: 3.5s</option>
+          <option value="4500" selected>TO: 4.5s</option>
+          <option value="5500">TO: 5.5s</option>
+        </select>
+        <select id="sel-advanced-stop" class="chk-select">
+          <option value="per_tab">Stop: Per-Tab 0ms</option>
+          <option value="per_account">Stop: 1 Akun</option>
+          <option value="all_accounts">Stop: Semua 5 Akun</option>
+        </select>
+      </div>
+      <div class="chk-row">
+        <label class="chk-item"><input type="checkbox" id="chk-sched-shot" /> Tembak Jam Server</label>
+        <input id="input-sched-time" class="chk-time" type="text" value="00:00:00" placeholder="HH:MM:SS" />
+        <span class="chk-sep">|</span>
+        <input id="input-ntfy-server" class="chk-hours" type="text" value="https://ntfy.sh" title="Server ntfy" />
+        <select id="sel-notif-dedupe" class="chk-select">
+          <option value="5">Dedupe 5s</option>
+          <option value="10" selected>Dedupe 10s</option>
+          <option value="30">Dedupe 30s</option>
+        </select>
+        <span class="pill pill-info">Kirim ke HP:</span>
+        <label class="chk-item"><input type="checkbox" id="chk-notif-lintasan" checked /> Lintasan / Jam Muncul</label>
+        <label class="chk-item"><input type="checkbox" id="chk-notif-kuota" checked /> Perubahan Kuota</label>
+        <label class="chk-item"><input type="checkbox" id="chk-notif-tembus" checked /> Order Sukses</label>
+        <label class="chk-item"><input type="checkbox" id="chk-notif-logout" /> Logout / 401</label>
+        <label class="chk-item"><input type="checkbox" id="chk-notif-proxy" /> Proxy Putus</label>
+        <label class="chk-item"><input type="checkbox" id="chk-notif-captcha" /> CAPTCHA</label>
+      </div>
+      <div class="chk-row">
+        <span class="pill pill-info">Fase 4: 24J &amp; Log</span>
+        <select id="sel-log-preset" class="chk-select">
+          <option value="50mb_7d" selected>Log 50 MB / 7 Hari (Rekomendasi)</option>
+          <option value="20mb_3d">Log 20 MB / 3 Hari (Hemat SSD)</option>
+        </select>
+        <select id="sel-watchdog-cal" class="chk-select">
+          <option value="320">Watchdog 320 MB</option>
+          <option value="350" selected>Watchdog 350 MB</option>
+          <option value="380">Watchdog 380 MB</option>
+        </select>
+        <label class="chk-item"><input type="checkbox" id="chk-health-report" checked /> Health Report JSON</label>
+        <button id="btn-prune-logs" class="btn-small">Bersihkan Log</button>
+        <button id="btn-open-logs" class="btn-small">Folder Log</button>
+        <button id="btn-apply-checklist" class="btn-small btn-primary">Simpan Opsi Fase 3–4</button>
+      </div>
+    </div>
+
+    <div id="preflight-grid" class="preflight-grid">
+      <div id="tab1-collection-card" class="acc-card tab1-collection-card">
+        <div class="acc-head">
+          <div class="acc-name-wrap">
+            <span class="acc-dot-login ok"></span>
+            <span class="acc-name-text" style="max-width:145px;">📦 Kumpulan Tab 1</span>
+            <span class="acc-tab-badge">(Master Mirror)</span>
+          </div>
+        </div>
+        <div class="acc-autoklik-row">
+          <button id="btn-toggle-tab1-mirror" type="button" class="btn-small btn-run" title="Mirror Real-Time 0ms untuk Kumpulan Tab 1. Otomatis putus untuk tab yang sedang Start AutoKlik.">🔗 Mirror Tab 1: ON</button>
+          <button id="btn-toggle-tab1-split" type="button" class="btn-small btn-primary" title="Tampilkan semua Tab 1 lintas akun secara Split Vertikal berdampingan dalam 1 layar">▥ Split Vertikal</button>
+        </div>
+      </div>
+      <div id="tab2-collection-card" class="acc-card tab1-collection-card">
+        <div class="acc-head">
+          <div class="acc-name-wrap">
+            <span class="acc-dot-login"></span>
+            <span class="acc-name-text" style="max-width:145px;">📦 Kumpulan Tab 2</span>
+            <span class="acc-tab-badge">(Mirror Tab 2)</span>
+          </div>
+        </div>
+        <div class="acc-autoklik-row">
+          <button id="btn-toggle-tab2-mirror" type="button" class="btn-small" title="Mirror Real-Time 0ms untuk Kumpulan Tab 2. Otomatis putus untuk tab yang sedang Start AutoKlik.">🔗 Mirror Tab 2: OFF</button>
+          <button id="btn-toggle-tab2-split" type="button" class="btn-small btn-primary" title="Tampilkan semua Tab 2 lintas akun secara Split Vertikal berdampingan dalam 1 layar">▥ Split Vertikal</button>
+        </div>
+      </div>
+      <div id="tab3-collection-card" class="acc-card tab1-collection-card">
+        <div class="acc-head">
+          <div class="acc-name-wrap">
+            <span class="acc-dot-login"></span>
+            <span class="acc-name-text" style="max-width:145px;">📦 Kumpulan Tab 3</span>
+            <span class="acc-tab-badge">(Mirror Tab 3)</span>
+          </div>
+        </div>
+        <div class="acc-autoklik-row">
+          <button id="btn-toggle-tab3-mirror" type="button" class="btn-small" title="Mirror Real-Time 0ms untuk Kumpulan Tab 3. Otomatis putus untuk tab yang sedang Start AutoKlik.">🔗 Mirror Tab 3: OFF</button>
+          <button id="btn-toggle-tab3-split" type="button" class="btn-small btn-primary" title="Tampilkan semua Tab 3 lintas akun secara Split Vertikal berdampingan dalam 1 layar">▥ Split Vertikal</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="split-slot-bar" class="split-slot-bar hidden"></div>
+
+    <div class="nav-strip">
+      <button id="btn-back-active" class="btn-small" title="Kembali ke halaman/tampilan website sebelumnya (Alt + Panah Kiri)">⬅ Kembali</button>
+      <button id="btn-reload-active" class="btn-small" title="Muat ulang halaman tab aktif">↻ Muat Ulang</button>
+      <div class="address-bar-wrap">
+        <select id="url-preset-select" class="url-preset-select" title="Pilih Alamat Web Cepat di Address Bar">
+          <option value="">🌐 Pilih Alamat Web</option>
+          <option value="https://trip.ferizy.com/">https://trip.ferizy.com/</option>
+          <option value="https://trip.ferizy.com/order">https://trip.ferizy.com/order</option>
+        </select>
+        <input id="active-url-input" type="text" list="ferizy-url-presets" placeholder="https://trip.ferizy.com/" />
+        <datalist id="ferizy-url-presets">
+          <option value="https://trip.ferizy.com/">Beranda / Cari Jadwal Ferizy</option>
+          <option value="https://trip.ferizy.com/order">Pesanan Saya / Order Ferizy</option>
+        </datalist>
+      </div>
+      <button id="btn-go-url" class="btn-small btn-primary">Buka URL</button>
+      <button id="btn-toggle-active-runner" class="btn-small btn-run">▶ Start Tab</button>
+      <span id="active-meta" class="active-meta">Siap</span>
+    </div>
+  </header>
+
+  <div id="config-modal" class="modal hidden">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="modal-title">Pengaturan Akun</h3>
+        <button id="btn-close-modal" class="btn-small">Tutup</button>
+      </div>
+      <div class="modal-body">
+        <label>Nama Kotak Akun (Tersimpan Permanen)</label>
+        <input id="cfg-acc-name" type="text" maxlength="32" placeholder="Contoh: Akun Merak 1" />
+        <label>Mode Proxy (Multi-IP Container)</label>
+        <select id="cfg-proxy-protocol">
+          <option value="direct">Direct (Tanpa Proxy)</option>
+          <option value="http">HTTP Proxy</option>
+          <option value="socks5">SOCKS5 / Modem Bridge</option>
+        </select>
+        <div class="row-2">
+          <div>
+            <label>Host / IP Proxy</label>
+            <input id="cfg-proxy-host" type="text" placeholder="127.0.0.1 atau IP proxy" />
+          </div>
+          <div>
+            <label>Port</label>
+            <input id="cfg-proxy-port" type="number" value="8080" />
+          </div>
+        </div>
+        <div class="row-2">
+          <div>
+            <label>Username (Opsional)</label>
+            <input id="cfg-proxy-user" type="text" />
+          </div>
+          <div>
+            <label>Password (Opsional)</label>
+            <input id="cfg-proxy-pass" type="password" />
+          </div>
+        </div>
+        <hr />
+        <label>Geolocation Provider</label>
+        <select id="cfg-geo-mode">
+          <option value="preset_0ms">Preset Koordinat 0ms + Micro-Jitter</option>
+          <option value="windows">Lokasi Windows Native</option>
+        </select>
+        <label>Preset Pelabuhan</label>
+        <select id="cfg-geo-preset">
+          <option value="merak">Pelabuhan Merak (-5.9308, 105.9935)</option>
+          <option value="bakauheni">Pelabuhan Bakauheni (-5.8705, 105.7538)</option>
+          <option value="ketapang">Pelabuhan Ketapang (-8.1449, 114.4036)</option>
+          <option value="gilimanuk">Pelabuhan Gilimanuk (-8.1636, 114.4375)</option>
+        </select>
+      </div>
+      <div class="modal-foot">
+        <button id="btn-save-account-cfg" class="btn-small btn-primary">Simpan &amp; Terapkan</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="notif-modal" class="modal hidden">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Pengaturan Notif Terkirim ke HP (ntfy)</h3>
+        <button id="btn-close-notif-modal" class="btn-small">Tutup</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-hint">Hanya notifikasi yang tercentang di bawah ini yang akan dikirim ke HP Anda lewat ntfy.</p>
+        <label class="chk-item"><input type="checkbox" id="m-notif-lintasan" checked /> Lintasan Dibuka / Jam Muncul (trip.ferizy.com/)</label>
+        <label class="chk-item"><input type="checkbox" id="m-notif-kuota" checked /> Perubahan Kuota (/ferryschedule)</label>
+        <label class="chk-item"><input type="checkbox" id="m-notif-tembus" checked /> Order Sukses / Tembus Verifikasi</label>
+        <hr />
+        <label class="chk-item"><input type="checkbox" id="m-notif-logout" /> Sesi Akun Logout / HTTP 401</label>
+        <label class="chk-item"><input type="checkbox" id="m-notif-proxy" /> Koneksi Proxy Terputus</label>
+        <label class="chk-item"><input type="checkbox" id="m-notif-captcha" /> CAPTCHA / Challenge Muncul</label>
+        <hr />
+        <div class="row-2">
+          <div>
+            <label>Topik ntfy</label>
+            <input id="m-ntfy-topic" type="text" placeholder="ferizy_Transsamudra05" />
+          </div>
+          <div>
+            <label>Deduplikasi (detik)</label>
+            <select id="m-notif-dedupe">
+              <option value="5">5 detik</option>
+              <option value="10" selected>10 detik</option>
+              <option value="30">30 detik</option>
+            </select>
+          </div>
+        </div>
+        <label>Server ntfy URL</label>
+        <input id="m-ntfy-server" type="text" value="https://ntfy.sh" />
+      </div>
+      <div class="modal-foot">
+        <button id="btn-save-notif-modal" class="btn-small btn-primary">Simpan Notif HP</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="display-modal" class="modal hidden">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3>Pengaturan Tampilan, Zoom &amp; New Split View</h3>
+        <button id="btn-close-display-modal" class="btn-small">Tutup</button>
+      </div>
+      <div class="modal-body">
+        <label class="chk-item">
+          <input type="checkbox" id="chk-compact-mode" />
+          Mode Header Kompak (Sembunyikan pill status agar area web lebih tinggi)
+        </label>
+        <hr />
+        <label>Zoom Semua Website (Global: <strong id="disp-zoom-label">100%</strong>)</label>
+        <input id="disp-zoom-slider" type="range" min="50" max="150" step="5" value="100" />
+        <div class="zoom-presets">
+          <button class="btn-small disp-zoom-preset" data-zoom="70">70%</button>
+          <button class="btn-small disp-zoom-preset" data-zoom="80">80%</button>
+          <button class="btn-small disp-zoom-preset" data-zoom="90">90%</button>
+          <button class="btn-small disp-zoom-preset" data-zoom="100">100%</button>
+          <button class="btn-small disp-zoom-preset" data-zoom="110">110%</button>
+          <button class="btn-small disp-zoom-preset" data-zoom="125">125%</button>
+        </div>
+        <hr />
+        <label>Split Mandiri Akun Aktif (Bagi Rata Presisi untuk Titik AutoKlik)</label>
+        <p class="modal-hint">Split 2 atau Split 3 berlaku mandiri hanya untuk tab di dalam akun yang sedang aktif &mdash; tidak mencampur atau mengubah pengaturan kontainer akun lain. Klik kanan web &rarr; <b>Salin Koordinat Klik (x, y)</b>.</p>
+        <div class="zoom-presets">
+          <button class="btn-small disp-split-preset" data-split="1">1 Layar Penuh</button>
+          <button class="btn-small disp-split-preset" data-split="2">Split 2 Rata (50%)</button>
+          <button class="btn-small disp-split-preset" data-split="3">Split 3 Rata (33.3%)</button>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button id="btn-done-display-modal" class="btn-small btn-primary">Selesai</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="autoklik-ext-modal" class="modal hidden">
+    <div class="modal-card modal-card-wide">
+      <div class="modal-head">
+        <div>
+          <h3>Atur Titik • AutoKlik v3.2 (Mandiri Per-Tab)</h3>
+          <small id="ak-container-badge" class="active-meta">Container: persist:akun_1 • Tab 1</small>
+        </div>
+        <button id="btn-close-autoklik-ext" class="btn-small">Tutup</button>
+      </div>
+      <div class="modal-body modal-scroll">
+        <div class="ak-toolbar">
+          <select id="ak-account-select" style="width:155px;"></select>
+          <select id="ak-tab-select" style="width:125px;"></select>
+          <button id="btn-ak-start-acc" class="btn-small btn-run">▶ Start Tab</button>
+          <button id="btn-ak-stop-acc" class="btn-small btn-stop">■ Stop</button>
+          <button id="btn-ak-pick-target" class="btn-small btn-primary">🎯 Ambil Titik</button>
+          <button id="btn-ak-save-dialog" class="btn-small">Save .JSON</button>
+          <button id="btn-ak-open-dialog" class="btn-small">Load .JSON</button>
+          <button id="btn-ak-copy-all" class="btn-small">Salin ke Semua Akun</button>
+        </div>
+        <div id="ak-status-msg" class="modal-hint">Konfigurasi titik bersifat mandiri per tab (Tab 1 / Tab 2 / Tab 3) di dalam akun masing-masing.</div>
+
+        <div class="ak-section">
+          <strong>Pengaturan Tab Ini (<span id="ak-tab-scope-lbl">Tab 1</span>)</strong>
+          <div class="chk-row">
+            <label class="chk-item"><input type="checkbox" id="ak-set-enabled" checked /> Aktif di Tab Ini</label>
+            <label class="chk-item"><input type="checkbox" id="ak-set-loop" checked /> Loop Kembali ke Titik #1</label>
+            <label class="chk-item"><input type="checkbox" id="ak-set-smartmatch" checked /> Smart Match Jadwal</label>
+            <label class="chk-item"><input type="checkbox" id="ak-set-antirevert" checked /> Lazy Anti-Revert</label>
+            <label class="chk-item"><input type="checkbox" id="ak-set-hidden" /> Hidden Titik</label>
+            <label class="chk-item"><input type="checkbox" id="ak-set-locked" /> Kunci Titik</label>
+          </div>
+          <div class="ak-grid-4">
+            <div>
+              <label>Maks Loop (0=∞)</label>
+              <input id="ak-set-maxloops" type="number" min="0" max="999" value="0" />
+            </div>
+            <div>
+              <label>Jeda Loop (ms)</label>
+              <input id="ak-set-loopdelay" type="number" min="20" max="60000" value="100" />
+            </div>
+            <div>
+              <label>Radius Cari (px)</label>
+              <input id="ak-set-radius" type="number" min="5" max="200" value="28" />
+            </div>
+            <div style="display:flex;align-items:flex-end;">
+              <button id="btn-ak-save-settings" class="btn-small btn-primary" style="width:100%;padding:7px;">Simpan Pengaturan</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="ak-section">
+          <div class="modal-head">
+            <strong>Daftar Titik Eksekusi (<span id="ak-points-count">0</span>)</strong>
+            <button id="btn-ak-clear-tab-points" class="btn-small btn-stop" title="Kosongkan semua titik di tab ini saja">Kosongkan Tab Ini</button>
+          </div>
+          <div id="ak-points-list" class="ak-points-list"></div>
+        </div>
+
+        <div class="ak-section">
+          <strong id="ak-form-title">Tambah Titik Baru</strong>
+          <div class="ak-grid-4">
+            <div>
+              <label>Tipe</label>
+              <select id="ak-pt-type">
+                <option value="tap">TAP (Klik)</option>
+                <option value="swipe_up">SWIPE ATAS (▲)</option>
+                <option value="swipe_down">SWIPE BWH (▼)</option>
+                <option value="input">INPUT KETIK (+Popup)</option>
+              </select>
+            </div>
+            <div>
+              <label>Label Titik</label>
+              <input id="ak-pt-label" type="text" placeholder="Contoh: Tombol Pesan" />
+            </div>
+            <div>
+              <label>X</label>
+              <input id="ak-pt-x" type="number" value="540" />
+            </div>
+            <div>
+              <label>Y</label>
+              <input id="ak-pt-y" type="number" value="420" />
+            </div>
+          </div>
+          <div class="ak-grid-4">
+            <div>
+              <label>Jeda (ms, default 500 = 0.5s)</label>
+              <input id="ak-pt-delay" type="number" min="15" value="500" />
+            </div>
+            <div>
+              <label>Selector CSS (Opsional)</label>
+              <input id="ak-pt-selector" type="text" placeholder="#btn-pesan" />
+            </div>
+            <div>
+              <label>Teks Input / Key Popup</label>
+              <input id="ak-pt-value" type="text" placeholder="Isi teks / nama" />
+            </div>
+            <div>
+              <label>Swipe End (X,Y Opsional)</label>
+              <input id="ak-pt-endxy" type="text" placeholder="540,200" />
+            </div>
+          </div>
+          <div class="modal-foot" style="gap:6px;">
+            <button id="btn-ak-cancel-edit" class="btn-small hidden">Batal Edit</button>
+            <button id="btn-ak-save-point" class="btn-small btn-primary">+ Tambah Titik</button>
+          </div>
+        </div>
+
+        <div class="ak-section">
+          <div class="modal-head">
+            <strong>Backup / Import JSON Akun Ini</strong>
+            <div style="display:flex;gap:6px;">
+              <button id="btn-ak-export-json" class="btn-small">Muat JSON Akun</button>
+              <button id="btn-ak-import-json" class="btn-small btn-primary">Import JSON ke Akun Ini</button>
+            </div>
+          </div>
+          <textarea id="ak-json-io" class="ak-json-box" rows="4" placeholder="Klik 'Muat JSON Akun' untuk ekspor, atau tempel JSON AutoKlik v3.2 di sini lalu klik 'Import JSON'..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="ak-edit-point-modal" class="modal hidden">
+    <div class="modal-card ep-ext-card">
+      <div class="modal-head ep-ext-head">
+        <div class="ep-title-wrap">
+          <h3 id="ep-modal-title">Titik #1 ( 🎯 )</h3>
+          <small id="ep-modal-sub" class="active-meta">Akun 1 • persist:akun_1</small>
+        </div>
+        <div class="ep-order-controls">
+          <span class="ep-order-lbl">Urutan:</span>
+          <button id="btn-ep-order-left" type="button" class="ep-order-btn" title="Geser Urutan Lebih Awal">⬅</button>
+          <button id="btn-ep-order-right" type="button" class="ep-order-btn" title="Geser Urutan Lebih Akhir">➡</button>
+          <button id="btn-ep-delete" type="button" class="btn-small btn-stop" title="Hapus Titik Ini">🗑</button>
+          <button id="btn-close-edit-point" type="button" class="btn-small">×</button>
+        </div>
+      </div>
+
+      <div class="modal-body modal-scroll ep-ext-body">
+        <div class="ep-top-meta-row">
+          <label class="chk-item"><input type="checkbox" id="ep-enabled" checked /> Titik Aktif</label>
+          <button id="btn-ep-repick" type="button" class="btn-small btn-primary">🎯 Pilih Ulang Lokasi</button>
+        </div>
+
+        <div class="ep-field-label">Tipe Aksi:</div>
+        <div class="ep-type-grid">
+          <button type="button" class="ep-type-btn active" data-type="tap">🎯 Tap</button>
+          <button type="button" class="ep-type-btn" data-type="swipe_up">▲ Swipe Atas</button>
+          <button type="button" class="ep-type-btn" data-type="swipe_down">▼ Swipe Bwh</button>
+          <button type="button" class="ep-type-btn" data-type="input">📋 Input Ketik (+Popup)</button>
+        </div>
+
+        <div class="ep-inline-card">
+          <span class="ep-inline-title">⏱ Jeda Titik (Def 0.5s):</span>
+          <input id="ep-delay-val" type="number" min="0.01" step="0.1" value="0.5" class="ep-num-sm" />
+          <label class="ep-radio"><input type="radio" name="ep-delay-unit" value="ms" /> ms</label>
+          <label class="ep-radio"><input type="radio" name="ep-delay-unit" value="s" checked /> Detik (s)</label>
+        </div>
+
+        <div class="ep-inline-card ep-slider-row">
+          <span id="ep-icon-size-label" class="ep-purple-lbl">📏 Ikon: 25% (35dp)</span>
+          <input id="ep-icon-size" type="range" min="15" max="100" step="1" value="25" />
+        </div>
+
+        <div id="ep-swipe-group" class="ep-subcard ep-swipe-card hidden">
+          <div class="ep-row-between">
+            <span>📏 Panjang Garis (px):</span>
+            <input id="ep-swipe-len" type="number" min="40" max="1500" value="350" class="ep-num-md" />
+          </div>
+          <div class="ep-row-between">
+            <span>⚡ Skala Tenaga Swipe:</span>
+            <input id="ep-swipe-scale" type="number" min="1" max="20" value="2" class="ep-num-md" />
+          </div>
+          <div class="ep-preset-row">
+            <button type="button" class="ep-preset-btn ep-scale-preset" data-scale="1">1x</button>
+            <button type="button" class="ep-preset-btn ep-scale-preset" data-scale="2">2x</button>
+            <button type="button" class="ep-preset-btn ep-scale-preset" data-scale="3">3x</button>
+            <button type="button" class="ep-preset-btn ep-scale-preset" data-scale="4">4x</button>
+            <button type="button" class="ep-preset-btn ep-scale-preset" data-scale="5">5x</button>
+            <button type="button" class="ep-preset-btn ep-scale-preset" data-scale="8">8x</button>
+          </div>
+          <div id="ep-swipe-summary" class="ep-swipe-summary">Total Jarak Geser Layar: 700 px (Smooth Ease-In-Out 60FPS)</div>
+        </div>
+
+        <div id="ep-input-group" class="ep-subcard ep-input-card hidden">
+          <div class="ep-popup-pin-box">
+            <label class="chk-item">
+              <input type="checkbox" id="ep-popup-pin-enabled" />
+              <strong id="ep-popup-pin-label">Aktifkan Popup Key Autofill (Pin Ungu #1)</strong>
+            </label>
+            <div id="ep-popup-trigger-preview" class="ep-hint-sm" style="color:#e9d5ff;margin-top:4px;">Huruf pemicu otomatis diambil dari huruf pertama teks siklus (#1).</div>
+            <div class="ep-row-between" style="margin-top:6px;">
+              <span>⏱ Waktu Jeda Muncul Popup (ms):</span>
+              <input id="ep-popup-delay" type="number" min="20" max="10000" step="10" value="300" class="ep-num-md" />
+            </div>
+            <div class="ep-preset-row ep-preset-4" style="margin-top:4px;">
+              <button type="button" class="ep-preset-btn ep-popup-delay-preset" data-pdelay="150">150ms</button>
+              <button type="button" class="ep-preset-btn ep-popup-delay-preset active" data-pdelay="300">300ms (Def)</button>
+              <button type="button" class="ep-preset-btn ep-popup-delay-preset" data-pdelay="500">500ms</button>
+              <button type="button" class="ep-preset-btn ep-popup-delay-preset" data-pdelay="800">800ms</button>
+            </div>
+          </div>
+          <div class="ep-cycle-header">
+            <span>📋 Daftar Teks Input Ketik (Per Siklus • 100% Murni Keyboard)</span>
+            <button id="btn-ep-add-cycle-text" type="button" class="btn-small btn-run">+ Tambah Teks</button>
+          </div>
+          <p class="ep-hint-sm">100% Murni Keyboard Manusia (Tanpa Paste): Klik Kolom → Hapus Teks Lama dengan Backspace Berulang Sesuai Panjang Teks → Ketik Huruf Demi Huruf (Default 30ms/huruf).</p>
+          <div id="ep-cycle-texts-list" class="ep-cycle-list"></div>
+
+          <div class="ep-row-between" style="margin-top:4px;">
+            <span class="ep-amber-lbl">⚡ Kecepatan Ketik Keyboard (Def 30ms/huruf):</span>
+            <input id="ep-typing-speed" type="number" min="5" max="1000" value="30" class="ep-num-md" />
+          </div>
+          <div class="ep-preset-row ep-preset-4">
+            <button type="button" class="ep-preset-btn ep-speed-preset" data-speed="15">15ms (Cepat)</button>
+            <button type="button" class="ep-preset-btn ep-speed-preset active" data-speed="30">30ms (Default)</button>
+            <button type="button" class="ep-preset-btn ep-speed-preset" data-speed="45">45ms (Santai)</button>
+            <button type="button" class="ep-preset-btn ep-speed-preset" data-speed="65">65ms (Halus)</button>
+          </div>
+          <label class="chk-item"><input type="checkbox" id="ep-clear-before" checked /> Hapus teks sebelumnya dengan Backspace berulang sesuai panjang teks lalu ketik</label>
+          <label class="chk-item"><input type="checkbox" id="ep-focus-before" checked /> Gerakkan kursor halus, klik &amp; fokus kolom otomatis sebelum mengetik</label>
+          <label class="chk-item hidden"><input type="checkbox" id="ep-antirevert" /> Lazy Anti-Revert untuk Input</label>
+        </div>
+
+        <div class="ep-inline-card" style="justify-content:space-between;background:#0b192e;border-color:#1e3a5f;">
+          <span style="font-size:11px;color:#6ee7b7;font-weight:700;">🔄 Siklus Default Permanen: Titik #1 ➔ ... ➔ Titik Terakhir ➔ Kembali ke Titik #1</span>
+        </div>
+
+        <details class="ep-advanced-details">
+          <summary>Koordinat &amp; Label Lanjutan (<span id="ep-coord-preview">x=0, y=0</span>)</summary>
+          <div class="row-2" style="margin-top:6px;">
+            <div>
+              <label>Koordinat X</label>
+              <input id="ep-x" type="number" />
+            </div>
+            <div>
+              <label>Koordinat Y</label>
+              <input id="ep-y" type="number" />
+            </div>
+          </div>
+          <div class="row-2" style="margin-top:6px;">
+            <div>
+              <label>Label Titik</label>
+              <input id="ep-label" type="text" placeholder="Contoh: Tombol Pesan" />
+            </div>
+            <div>
+              <label>Radius Cari (px)</label>
+              <input id="ep-radius" type="number" min="5" max="200" value="28" />
+            </div>
+          </div>
+          <div style="margin-top:6px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <label>Selector CSS (Kosong = klik tepat di icon X,Y)</label>
+              <button id="btn-ep-clear-sel" type="button" class="btn-small">Kosongkan</button>
+            </div>
+            <input id="ep-selector" type="text" placeholder="Kosong = klik tepat di center icon" />
+          </div>
+        </details>
+      </div>
+
+      <div class="modal-foot ep-ext-foot">
+        <button id="btn-ep-cancel" type="button" class="ep-foot-cancel">✕ Batal</button>
+        <button id="btn-ep-save" type="button" class="ep-foot-save">✔ Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="ak-load-copy-modal" class="modal hidden">
+    <div class="modal-card modal-wide">
+      <div class="modal-head">
+        <div>
+          <h3 id="lcm-title">📂 Menu Load &amp; Copy-Paste Konfigurasi AutoKlik</h3>
+          <small id="lcm-subtitle" class="active-meta">Akun 1 • Tab 1</small>
+        </div>
+        <button id="btn-close-load-copy-modal" type="button" class="btn-small">×</button>
+      </div>
+      <div class="modal-body modal-scroll">
+        <div class="ak-section">
+          <strong>1. Target Kontainer &amp; Tab Tujuan</strong>
+          <div class="row-2" style="margin-top:6px;">
+            <div>
+              <label>Akun Tujuan</label>
+              <select id="lcm-target-account"></select>
+            </div>
+            <div>
+              <label>Tab Tujuan</label>
+              <select id="lcm-target-tab">
+                <option value="1">Tab 1</option>
+                <option value="2">Tab 2</option>
+                <option value="3">Tab 3</option>
+              </select>
+            </div>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;">
+            <button id="btn-lcm-load-file" type="button" class="btn-small btn-primary">📂 Load File .JSON dari PC ke Tab Tujuan</button>
+            <button id="btn-lcm-save-file" type="button" class="btn-small">💾 Save Konfigurasi Tab Tujuan ke File .JSON</button>
+          </div>
+        </div>
+
+        <div class="ak-section">
+          <strong>2. Copy-Paste Konfigurasi Antar Tab / Antar Akun</strong>
+          <small id="lcm-clipboard-badge" class="active-meta">Clipboard: Belum ada konfigurasi yang disalin.</small>
+          <div class="row-2" style="margin-top:6px;">
+            <div>
+              <label>Salin Dari Akun Sumber</label>
+              <select id="lcm-source-account"></select>
+            </div>
+            <div>
+              <label>Salin Dari Tab Sumber</label>
+              <select id="lcm-source-tab">
+                <option value="1">Tab 1</option>
+                <option value="2">Tab 2</option>
+                <option value="3">Tab 3</option>
+              </select>
+            </div>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;">
+            <button id="btn-lcm-copy-tab" type="button" class="btn-small">📋 Copy dari Tab Sumber</button>
+            <button id="btn-lcm-paste-tab" type="button" class="btn-small btn-run">📥 Paste ke Tab Tujuan</button>
+            <button id="btn-lcm-paste-all-tabs-acc" type="button" class="btn-small btn-primary">📑 Paste ke Semua Tab (1-3) di Akun Tujuan</button>
+            <button id="btn-lcm-paste-all-accounts" type="button" class="btn-small">🌐 Paste ke Semua Akun (Tab Sama)</button>
+          </div>
+        </div>
+
+        <div class="ak-section">
+          <div class="modal-head">
+            <strong>3. Copy-Paste Teks JSON Konfigurasi Langsung</strong>
+            <div style="display:flex;gap:6px;">
+              <button id="btn-lcm-copy-json" type="button" class="btn-small">📋 Muat &amp; Copy JSON Sumber</button>
+              <button id="btn-lcm-apply-json" type="button" class="btn-small btn-primary">📥 Paste / Terapkan JSON ke Tab Tujuan</button>
+            </div>
+          </div>
+          <textarea id="lcm-json-box" class="ak-json-box" rows="4" placeholder="Klik 'Muat & Copy JSON Sumber' atau tempel (Ctrl+V) JSON konfigurasi AutoKlik di sini lalu klik 'Paste / Terapkan JSON ke Tab Tujuan'..."></textarea>
+        </div>
+
+        <small id="lcm-status-msg" class="active-meta">Pilih sumber dan tujuan untuk menyalin konfigurasi antar tab dengan cepat.</small>
+      </div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

@@ -1,0 +1,465 @@
+{
+  "schema": "AutoKlikPro",
+  "version": "3.2",
+  "extensionName": "AutoKlik-v3.2-Mandiri-Extension",
+  "compatibleWith": "Ferizy Multi-Container Electron (Fase 2)",
+  "targetOrigin": "https:\/\/trip.ferizy.com",
+  "ntfyTopic": "ferizy_Transsamudra05",
+  "ntfyServer": "https:\/\/ntfy.sh",
+  "hardCapTabsPerAccount": 3,
+  "lazyAntiRevert": true,
+  "winIsolationMode": "per_tab",
+  "containers": {
+    "persist:akun_1": {
+      "accountId": 1,
+      "partition": "persist:akun_1",
+      "label": "Akun 1",
+      "ntfyTopic": "ferizy_Transsamudra05",
+      "extensionSettings": {
+        "enabled": true,
+        "loopEnabled": true,
+        "maxLoops": 0,
+        "loopDelayMs": 100,
+        "radiusPx": 28,
+        "smartMatch": true,
+        "antiRevert": true,
+        "markersHidden": false,
+        "pointsLocked": false
+      },
+      "geolocation": {
+        "mode": "preset_0ms",
+        "preset": "merak",
+        "latitude": -5.93098,
+        "longitude": 105.99343
+      },
+      "points": [
+        {
+          "id": "pt_1_1",
+          "order": 1,
+          "type": "tap",
+          "label": "Titik 1",
+          "enabled": true,
+          "x": 410,
+          "y": 320,
+          "radiusPx": 28,
+          "delayAfterMs": 500
+        },
+        {
+          "id": "pt_1_2",
+          "order": 2,
+          "type": "swipe",
+          "label": "Titik 2",
+          "enabled": true,
+          "x": 540,
+          "y": 620,
+          "radiusPx": 24,
+          "endX": 540,
+          "endY": 260,
+          "durationMs": 180,
+          "delayAfterMs": 500
+        },
+        {
+          "id": "pt_1_3",
+          "order": 3,
+          "type": "input",
+          "label": "Titik 3",
+          "enabled": true,
+          "x": 480,
+          "y": 490,
+          "radiusPx": 32,
+          "inputValue": "PENUMPANG AKUN 1",
+          "text": "PENUMPANG AKUN 1",
+          "typingSpeedMs": 30,
+          "popupDelayMs": 300,
+          "antiRevert": true,
+          "delayAfterMs": 500
+        },
+        {
+          "id": "pt_1_4",
+          "order": 4,
+          "type": "popup_key",
+          "label": "Titik 4",
+          "enabled": true,
+          "x": 640,
+          "y": 580,
+          "radiusPx": 24,
+          "popupKey": "Enter",
+          "key": "Enter",
+          "delayAfterMs": 500
+        }
+      ]
+    },
+    "persist:akun_2": {
+      "accountId": 2,
+      "partition": "persist:akun_2",
+      "label": "Akun 2",
+      "ntfyTopic": "ferizy_Transsamudra05",
+      "extensionSettings": {
+        "enabled": true,
+        "loopEnabled": true,
+        "maxLoops": 0,
+        "loopDelayMs": 100,
+        "radiusPx": 28,
+        "smartMatch": true,
+        "antiRevert": true,
+        "markersHidden": false,
+        "pointsLocked": false
+      },
+      "geolocation": {
+        "mode": "preset_0ms",
+        "preset": "merak",
+        "latitude": -5.93089,
+        "longitude": 105.99364
+      },
+      "points": [
+        {
+          "id": "pt_2_1",
+          "order": 1,
+          "type": "tap",
+          "label": "Titik 1",
+          "enabled": true,
+          "x": 410,
+          "y": 320,
+          "radiusPx": 28,
+          "delayAfterMs": 500
+        },
+        {
+          "id": "pt_2_2",
+          "order": 2,
+          "type": "swipe",
+          "label": "Titik 2",
+          "enabled": true,
+          "x": 540,
+          "y": 620,
+          "radiusPx": 24,
+          "endX": 540,
+          "endY": 260,
+          "durationMs": 180,
+          "delayAfterMs": 500
+        },
+        {
+          "id": "pt_2_3",
+          "order": 3,
+          "type": "input",
+          "label": "Titik 3",
+          "enabled": true,
+          "x": 480,
+          "y": 490,
+          "radiusPx": 32,
+          "inputValue": "PENUMPANG AKUN 2",
+          "text": "PENUMPANG AKUN 2",
+          "typingSpeedMs": 30,
+          "popupDelayMs": 300,
+          "antiRevert": true,
+          "delayAfterMs": 500
+        },
+        {
+          "id": "pt_2_4",
+          "order": 4,
+          "type": "popup_key",
+          "label": "Titik 4",
+          "enabled": true,
+          "x": 640,
+          "y": 580,
+          "radiusPx": 24,
+          "popupKey": "Enter",
+          "key": "Enter",
+          "delayAfterMs": 500
+        }
+      ]
+    },
+    "persist:akun_3": {
+      "accountId": 3,
+      "partition": "persist:akun_3",
+      "label": "Akun 3",
+      "ntfyTopic": "ferizy_Transsamudra05",
+      "extensionSettings": {
+        "enabled": true,
+        "loopEnabled": true,
+        "maxLoops": 0,
+        "loopDelayMs": 100,
+        "radiusPx": 28,
+        "smartMatch": true,
+        "antiRevert": true,
+        "markersHidden": false,
+        "pointsLocked": false
+      },
+      "geolocation": {
+        "mode": "preset_0ms",
+        "preset": "merak",
+        "latitude": -5.9308,
+        "longitude": 105.99329
+      },
+      "points": [
+        {
+          "id": "pt_3_1",
+          "order": 1,
+          "type": "tap",
+          "label": "Titik 1",
+          "enabled": true,
+          "x": 410,
+          "y": 320,
+          "radiusPx": 28,
+          "delayAfterMs": 500
+        },
+        {
+          "id": "pt_3_2",
+          "order": 2,
+          "type": "swipe",
+          "label": "Titik 2",
+          "enabled": true,
+          "x": 540,
+          "y": 620,
+          "radiusPx": 24,
+          "endX": 540,
+          "endY": 260,
+          "durationMs": 180,
+          "delayAfterMs": 500
+        },
+        {
+          "id": "pt_3_3",
+          "order": 3,
+          "type": "input",
+          "label": "Titik 3",
+          "enabled": true,
+          "x": 480,
+          "y": 490,
+          "radiusPx": 32,
+          "inputValue": "PENUMPANG AKUN 3",
+          "text": "PENUMPANG AKUN 3",
+          "typingSpeedMs": 30,
+          "popupDelayMs": 300,
+          "antiRevert": true,
+          "delayAfterMs": 500
+        },
+        {
+          "id": "pt_3_4",
+          "order": 4,
+          "type": "popup_key",
+          "label": "Titik 4",
+          "enabled": true,
+          "x": 640,
+          "y": 580,
+          "radiusPx": 24,
+          "popupKey": "Enter",
+          "key": "Enter",
+          "delayAfterMs": 500
+        }
+      ]
+    },
+    "persist:akun_4": {
+      "accountId": 4,
+      "partition": "persist:akun_4",
+      "label": "Akun 4",
+      "ntfyTopic": "ferizy_Transsamudra05",
+      "extensionSettings": {
+        "enabled": true,
+        "loopEnabled": true,
+        "maxLoops": 0,
+        "loopDelayMs": 100,
+        "radiusPx": 28,
+        "smartMatch": true,
+        "antiRevert": true,
+        "markersHidden": false,
+        "pointsLocked": false
+      },
+      "geolocation": {
+        "mode": "preset_0ms",
+        "preset": "merak",
+        "latitude": -5.9307099999999995,
+        "longitude": 105.99378
+      },
+      "points": [
+        {
+          "id": "pt_4_1",
+          "order": 1,
+          "type": "tap",
+          "label": "Titik 1",
+          "enabled": true,
+          "x": 410,
+          "y": 320,
+          "radiusPx": 28,
+          "delayAfterMs": 500
+        },
+        {
+          "id": "pt_4_2",
+          "order": 2,
+          "type": "swipe",
+          "label": "Titik 2",
+          "enabled": true,
+          "x": 540,
+          "y": 620,
+          "radiusPx": 24,
+          "endX": 540,
+          "endY": 260,
+          "durationMs": 180,
+          "delayAfterMs": 500
+        },
+        {
+          "id": "pt_4_3",
+          "order": 3,
+          "type": "input",
+          "label": "Titik 3",
+          "enabled": true,
+          "x": 480,
+          "y": 490,
+          "radiusPx": 32,
+          "inputValue": "PENUMPANG AKUN 4",
+          "text": "PENUMPANG AKUN 4",
+          "typingSpeedMs": 30,
+          "popupDelayMs": 300,
+          "antiRevert": true,
+          "delayAfterMs": 500
+        },
+        {
+          "id": "pt_4_4",
+          "order": 4,
+          "type": "popup_key",
+          "label": "Titik 4",
+          "enabled": true,
+          "x": 640,
+          "y": 580,
+          "radiusPx": 24,
+          "popupKey": "Enter",
+          "key": "Enter",
+          "delayAfterMs": 500
+        }
+      ]
+    },
+    "persist:akun_5": {
+      "accountId": 5,
+      "partition": "persist:akun_5",
+      "label": "Akun 5",
+      "ntfyTopic": "ferizy_Transsamudra05",
+      "extensionSettings": {
+        "enabled": true,
+        "loopEnabled": true,
+        "maxLoops": 0,
+        "loopDelayMs": 100,
+        "radiusPx": 28,
+        "smartMatch": true,
+        "antiRevert": true,
+        "markersHidden": false,
+        "pointsLocked": false
+      },
+      "geolocation": {
+        "mode": "preset_0ms",
+        "preset": "merak",
+        "latitude": -5.930619999999999,
+        "longitude": 105.99315
+      },
+      "points": [
+        {
+          "id": "pt_5_1",
+          "order": 1,
+          "type": "tap",
+          "label": "Titik 1",
+          "enabled": true,
+          "x": 410,
+          "y": 320,
+          "radiusPx": 28,
+          "delayAfterMs": 500
+        },
+        {
+          "id": "pt_5_2",
+          "order": 2,
+          "type": "swipe",
+          "label": "Titik 2",
+          "enabled": true,
+          "x": 540,
+          "y": 620,
+          "radiusPx": 24,
+          "endX": 540,
+          "endY": 260,
+          "durationMs": 180,
+          "delayAfterMs": 500
+        },
+        {
+          "id": "pt_5_3",
+          "order": 3,
+          "type": "input",
+          "label": "Titik 3",
+          "enabled": true,
+          "x": 480,
+          "y": 490,
+          "radiusPx": 32,
+          "inputValue": "PENUMPANG AKUN 5",
+          "text": "PENUMPANG AKUN 5",
+          "typingSpeedMs": 30,
+          "popupDelayMs": 300,
+          "antiRevert": true,
+          "delayAfterMs": 500
+        },
+        {
+          "id": "pt_5_4",
+          "order": 4,
+          "type": "popup_key",
+          "label": "Titik 4",
+          "enabled": true,
+          "x": 640,
+          "y": 580,
+          "radiusPx": 24,
+          "popupKey": "Enter",
+          "key": "Enter",
+          "delayAfterMs": 500
+        }
+      ]
+    }
+  },
+  "points": [
+    {
+      "id": "pt_1_1",
+      "order": 1,
+      "type": "tap",
+      "label": "Titik 1",
+      "enabled": true,
+      "x": 410,
+      "y": 320,
+      "radiusPx": 28,
+      "delayAfterMs": 500
+    },
+    {
+      "id": "pt_1_2",
+      "order": 2,
+      "type": "swipe",
+      "label": "Titik 2",
+      "enabled": true,
+      "x": 540,
+      "y": 620,
+      "radiusPx": 24,
+      "endX": 540,
+      "endY": 260,
+      "durationMs": 180,
+      "delayAfterMs": 500
+    },
+    {
+      "id": "pt_1_3",
+      "order": 3,
+      "type": "input",
+      "label": "Titik 3",
+      "enabled": true,
+      "x": 480,
+      "y": 490,
+      "radiusPx": 32,
+      "inputValue": "PENUMPANG AKUN 1",
+      "text": "PENUMPANG AKUN 1",
+      "typingSpeedMs": 30,
+      "popupDelayMs": 300,
+      "antiRevert": true,
+      "delayAfterMs": 500
+    },
+    {
+      "id": "pt_1_4",
+      "order": 4,
+      "type": "popup_key",
+      "label": "Titik 4",
+      "enabled": true,
+      "x": 640,
+      "y": 580,
+      "radiusPx": 24,
+      "popupKey": "Enter",
+      "key": "Enter",
+      "delayAfterMs": 500
+    }
+  ]
+}

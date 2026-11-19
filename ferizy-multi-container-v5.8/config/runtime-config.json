@@ -1,0 +1,150 @@
+{
+  "phase": 4,
+  "staggeredBootMs": 300,
+  "hardCapPerAccount": 3,
+  "maxAccounts": 5,
+  "ntfyTopic": "ferizy_Transsamudra05",
+  "closeToTray": true,
+  "powerSaveBlocker": true,
+  "webrtcDisableNonProxiedUdp": true,
+  "targetUrl": "https:\/\/trip.ferizy.com",
+  "defaultZoomPercent": 100,
+  "defaultSplitViewCount": 1,
+  "compactHeaderMode": false,
+  "tab1MasterMirrorEnabled": true,
+  "assetBlockerMode": "selective",
+  "memoryWatchdogLimitMb": 350,
+  "staggeredReloadDelayMs": 400,
+  "staggeredQueueMode": "reactive_only",
+  "lazyAntiRevertEnabled": true,
+  "winIsolationPerTab": true,
+  "apiSniffer0msEnabled": true,
+  "serverClockSyncEnabled": true,
+  "autoWakeMode": "same_account",
+  "notifLintasanExactUrl": "https:\/\/trip.ferizy.com\/",
+  "notifKuotaExactUrl": "https:\/\/trip.ferizy.com\/ferryschedule",
+  "ntfyServerUrl": "https:\/\/ntfy.sh",
+  "notifDedupeSeconds": 10,
+  "audioAlarmMuted": false,
+  "notifLintasanEnabled": true,
+  "notifKuotaEnabled": true,
+  "notifTembusEnabled": true,
+  "notifLogoutEnabled": false,
+  "notifProxyPutusEnabled": false,
+  "notifCaptchaEnabled": false,
+  "gentleKeepAliveEnabled": true,
+  "keepAliveIntervalMinutes": 12,
+  "captchaAutoPopEnabled": true,
+  "smartTargetMatcherEnabled": true,
+  "priorityHoursCsv": "08:00,10:00,12:00,14:00,20:00",
+  "smartMatcherServiceType": "all",
+  "smartMatcherFallbackNearest": true,
+  "latencyCompensationEnabled": false,
+  "fastRequestTimeoutMs": 4500,
+  "advancedStopMode": "per_tab",
+  "scheduledShotEnabled": false,
+  "scheduledShotTimeWib": "00:00:00",
+  "logRotationPreset": "50mb_7d",
+  "logMaxSizeMb": 50,
+  "logRetentionDays": 7,
+  "enduranceHealthReportEnabled": true,
+  "healthSnapshotIntervalMinutes": 60,
+  "watchdogCalibrationTargetMb": 350,
+  "accounts": [
+    {
+      "accountId": 1,
+      "name": "Akun 1",
+      "partition": "persist:akun_1",
+      "proxy": {
+        "protocol": "direct",
+        "host": "",
+        "port": 8080,
+        "username": "",
+        "password": "",
+        "ipLabel": "Direct ISP"
+      },
+      "geolocation": {
+        "mode": "preset_0ms",
+        "preset": "merak",
+        "latitude": -5.93098,
+        "longitude": 105.99343
+      }
+    },
+    {
+      "accountId": 2,
+      "name": "Akun 2",
+      "partition": "persist:akun_2",
+      "proxy": {
+        "protocol": "direct",
+        "host": "",
+        "port": 8080,
+        "username": "",
+        "password": "",
+        "ipLabel": "Direct ISP"
+      },
+      "geolocation": {
+        "mode": "preset_0ms",
+        "preset": "merak",
+        "latitude": -5.93089,
+        "longitude": 105.99364
+      }
+    },
+    {
+      "accountId": 3,
+      "name": "Akun 3",
+      "partition": "persist:akun_3",
+      "proxy": {
+        "protocol": "direct",
+        "host": "",
+        "port": 8080,
+        "username": "",
+        "password": "",
+        "ipLabel": "Direct ISP"
+      },
+      "geolocation": {
+        "mode": "preset_0ms",
+        "preset": "merak",
+        "latitude": -5.9308,
+        "longitude": 105.99329
+      }
+    },
+    {
+      "accountId": 4,
+      "name": "Akun 4",
+      "partition": "persist:akun_4",
+      "proxy": {
+        "protocol": "direct",
+        "host": "",
+        "port": 8080,
+        "username": "",
+        "password": "",
+        "ipLabel": "Direct ISP"
+      },
+      "geolocation": {
+        "mode": "preset_0ms",
+        "preset": "merak",
+        "latitude": -5.9307099999999995,
+        "longitude": 105.99378
+      }
+    },
+    {
+      "accountId": 5,
+      "name": "Akun 5",
+      "partition": "persist:akun_5",
+      "proxy": {
+        "protocol": "direct",
+        "host": "",
+        "port": 8080,
+        "username": "",
+        "password": "",
+        "ipLabel": "Direct ISP"
+      },
+      "geolocation": {
+        "mode": "preset_0ms",
+        "preset": "merak",
+        "latitude": -5.930619999999999,
+        "longitude": 105.99315
+      }
+    }
+  ]
+}

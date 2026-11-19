@@ -1,0 +1,18 @@
+{
+  "name": "ferizy-multi-container-browser",
+  "version": "5.8.0",
+  "description": "Browser Khusus Multi-Container Ferizy V5.8 (Electron + WebContentsView, Fase 1-4: Sniffer 0ms, Event Bus <1ms, Clock Sync, Notif Terpusat, Log Rotation & Uji Ketahanan 24 Jam)",
+  "main": "src/main/index.js",
+  "scripts": {
+    "start": "electron .",
+    "build:win": "electron-builder --win --x64",
+    "pack": "electron-builder --dir",
+    "test:endurance": "node scripts/endurance-stress-test.js"
+  },
+  "author": "FerizyForge Workspace",
+  "license": "PRIVATE",
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  }
+}
